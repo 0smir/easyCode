@@ -14,9 +14,12 @@ console.log(strX);// 'string #2' - переменная переопредели
 //Strings
 
 let string = 'some test string';
-console.log("first letter", string[0]);//first letter "s"
-console.log("last letter", string[string.length - 1]);// last letter "g"
+let stringUppercased = string[0].toUpperCase() + string.slice(1, -1) + string[string.length - 1].toUpperCase()
+// console.log("first letter", string[0].toUpperCase());//first letter "s"
+// console.log("last letter", string[string.length - 1].toUpperCase());// last letter "g"
+console.log('stringUppercased', stringUppercased);
 console.log(string.indexOf("string"));//10
+
 console.log(string.lastIndexOf(" "));//9
 console.log(string.substr(5, 4));//"test"
 console.log(string.substring(5, 10));//"test " взята строка с 5 по 9 символ включитекльно
