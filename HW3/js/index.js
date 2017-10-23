@@ -32,7 +32,21 @@ while(digit > 0){
     accum = accum * (digit);
     digit--;
 }
-document.write('factorial of 10: ', accum);
+document.write('factorial of 10: ', accum + '<br>');
+
+//Создаем строку счет до 10
+let count = 1;
+let strCountTill10 = 'Считаем до 10: ';
+do{
+    strCountTill10 += count;
+    if(count != 10){
+        strCountTill10 += ', ';
+    }
+    count++;
+    console.log(strCountTill10);
+} while(10 >= count);
+
+document.write(strCountTill10);
 
 
 
