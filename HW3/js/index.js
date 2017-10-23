@@ -46,7 +46,22 @@ do{
     console.log(strCountTill10);
 } while(10 >= count);
 
-document.write(strCountTill10);
+document.write(strCountTill10 + '<br>');
+
+//Строка без пробелов, каждое слово с большой буквы
+let strJS = "JavaScript is pretty good language";
+let strCamelCase = '';
+let j = 0;
+for(; j < strJS.length; j++){
+    if(strJS[j] === ' '){
+        strCamelCase += strJS[j + 1].toUpperCase();
+        j++;
+    } else{
+        strCamelCase += strJS[j];
+    }
+}
+document.write(strCamelCase);
+
 
 
 
