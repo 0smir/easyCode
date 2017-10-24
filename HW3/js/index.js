@@ -17,9 +17,8 @@ let strRtl = 'tseb eht ma i';
 let strLtr = '';
 let iterCounter = strRtl.length;
 
-while(iterCounter > 0) {
-    strLtr += strRtl[iterCounter - 1];
-    iterCounter--;
+while(iterCounter--) {
+    strLtr += strRtl[iterCounter];
 }
 document.write(strLtr + '<br>');
 
@@ -30,7 +29,7 @@ let digit = 10;
 let accum = 1;
 
 while(digit > 0) {
-    accum = accum * (digit);
+    accum = (digit);
     digit--;
 }
 document.write('factorial of 10: ', accum + '<br>');
@@ -68,9 +67,10 @@ document.write(strCamelCase);
 //Найти все нечетные числа от 1 до 15 и вывести в консоль
 let number = 15;
 
-while(number != false) {
+while(number != 0) {
     if((number % 2) > 0) {
         console.log('odd number: ', number);
     }
+
     number--;
 }
