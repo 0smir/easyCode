@@ -4,9 +4,8 @@ var newString = '';
 var i = 0;
 
 for( ; i < string.length; i++) {
-    if(string[i] === ' '){
-        newString = newString + string[i] + string[i + 1].toUpperCase();
-        i += 1;
+    if(string[i - 1] === ' '){
+        newString = newString + string[i].toUpperCase();
     } else {
         newString = newString + string[i];
     }
