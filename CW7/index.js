@@ -129,30 +129,66 @@
 // let getCounter = makeCounter();
 // let getCounter2 = makeCounter();
 // // console.log(getCounter());
-
-
+//
+//
 // let counter = {
 //     val: 0,
 //     plusOne: function () {
 //         return ++this.val;
 //     }
 // };
+//
+// let count = (function () {
+//     let index = 0;
+//     function setValue(value) {
+//         index = value;
+//     }
+//     function plusOne() {
+//         index++;
+//     }
+//     function getIndex() {
+//         return index;
+//     }
+//
+//     return {
+//         setValue: setValue,
+//         plusOne: plusOne,
+//         getIndex: getIndex
+//     }
+// })();
 
-let count = (function () {
-    let index = 0;
-    function setValue(value) {
-        index = value;
+let player = (function () {
+    let audio;
+    function init(source) {//'audio/audio.mp3'
+        if(!source){
+           return console.error("No source!");
+        }
+        audio = new Audio(source);
+        console.dir(audio);
     }
-    function plusOne() {
-        index++;
+    function play() {
+        if(!audio){ return error("init audio with 'init'");}
+        audio.play();
+        console.log('audio play');
     }
-    function getIndex() {
-        return index;
+    function pause() {
+        audio.pause();
+        console.log('audio paused');
+    }
+
+    function volume(value) {
+        if(!audio){ return error("init audio with 'init'");}
+        if(value){
+            console.log("volume ", audio.volume);
+        }
+        return value ? audio.volume : audio.volume;
     }
 
     return {
-        setValue: setValue,
-        plusOne: plusOne,
-        getIndex: getIndex
+        init: init,
+        play: play,
+        pause: pause,
+        volume: volume
     }
+
 })();
