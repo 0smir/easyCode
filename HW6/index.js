@@ -62,4 +62,4 @@ let delFirstArrElement = function(...arguments){
 }
 
 let delFirstArrElementAnswer = delFirstArrElement(arrDigit, arrStr, arrMixed);
-console.log("del First ArrElement:", delgitFirstArrElementAnswer);
+console.log("del First ArrElement:", delFirstArrElementAnswer);
