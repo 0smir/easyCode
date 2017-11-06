@@ -183,6 +183,12 @@ console.log("element full height:", element.getFullHeight());
 console.log("block full height:", element.getFullHeight.call(block));
 
 //7
+let element2 = {
+    height: 25,
+    getHeight: function () {return this.height;}
+};
+let getElemHeight = element2.getHeight;
+console.log(getElemHeight.call(element2));
 
 
 
