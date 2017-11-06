@@ -23,7 +23,7 @@ function getPrice() {
 
 function getDiscountPrice() {
     let discount = parseFloat(this.discount);
-    let priceWithDiscount = this.price - ((this.price * discount)/ 100);
+    let priceWithDiscount = this.price * (100 - discount)/ 100;
     console.log("цена со скидкой", priceWithDiscount);
     return this;
 }
@@ -110,6 +110,89 @@ console.log(user2.getName());// Abraham - произошло заимствов�
 // создано поле с названием метода и передана ф-я которая возвращает имя
 
 console.log(otherUser.getName());//Anton  контекст вызова user2 (т.к. вызываем имя через this)
+
+
+//THIS
+//1 Что выведет код, почему?
+
+function getList() {return this.list;}
+
+let users = {
+    length: 4,
+    list: ['Olya', 'Kolya', 'Nika', 'Mika']
+};
+
+console.log(getList());//undefined this = window у него нет свойства/метода list
+users.getList = getList; // создаем метод в объекте users с названием getList и передаем ф-ю getList
+console.log(users.getList()); // выведет массив, т.к. вызываеться в контексте объекта users (this = users)
+console.log(getList.call(users));// выведет массив, т.к. при помощи call принудительно передается контекст вызова
+
+
+
+//2 создать объект с розничной ценой и количеством продуктов. Он должен содержать
+// метод для получения общей стоимости всех товаров.
+
+let bill = {
+    productPrice: 236,
+    productNumber: 10,
+    getTotalPrice: function () {
+        return this.productPrice * this.productNumber;
+    }
+};
+
+console.log("bill get totalPrice", bill.getTotalPrice());
+//3 заимствование метода
+let bill2 = {
+    productPrice: 36,
+    productNumber: 5
+};
+
+bill2.getTotalPrice = bill.getTotalPrice;
+console.log("bill2 get totalPrice", bill2.getTotalPrice());
+
+// 4 Даны объект и ф-я, неизменяя ф-ю или объект , получить результат функцтии
+let size = {width: 5, height: 10},
+    getSquare = function () {
+        return this.width * this.height;
+    };
+
+console.log("получили результат функцтии getSquare в контексте объекта size:", getSquare.call(size));
+
+//5 Дан Массив. Используя ссылку на массив найти минимальный эл-т массива
+let numbers = [4, 12, 0, 10, -2, 4];
+let min = Math.min.apply(null, numbers);
+console.log("минимальный эл-т массива", min);
+
+// 6
+
+const element = {
+        height: '5px',
+        matginTop: '5px',
+        marginBottom:  '5px',
+        getFullHeight: function () {
+            return parseFloat(this.height) + parseFloat(this.matginTop) + parseFloat(this.marginBottom);
+        }
+    },
+    block = {
+        height: '5px',
+        matginTop: '3px',
+        marginBottom:  '3px'
+    };
+
+console.log("element full height:", element.getFullHeight());
+console.log("block full height:", element.getFullHeight.call(block));
+
+//7
+
+
+
+
+
+
+
+
+
+
 
 
 
