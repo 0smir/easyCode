@@ -1,9 +1,4 @@
-// // function foo() {
-// //     console.log("this: ", this);
-// // }
-// // foo();// окружение Window
-// //
-// // function getCoast() {
+// // function parseCoast() {
 // //     console.log(this.price);
 // //     return this;
 // // }
@@ -26,14 +21,14 @@
 // // let item = {
 // //     name: 'Noa',
 // //     price: 600
-// //     // getPrice: getCoast,
+// //     // getPrice: parseCoast,
 // //     // getName: getName
 // // };
 // //
 // // let item2 = {
 // //     name: 'Namy',
 // //     price: 500
-// //     // getPrice: getCoast,
+// //     // getPrice: parseCoast,
 // //     // getName: getName
 // // };
 // //
@@ -156,6 +151,91 @@
 //         getIndex: getIndex
 //     }
 // })();
+
+//Метод
+
+function parseCoast() {
+    this.price = parseFloat(this.price);
+    return this;
+}
+function getName() {
+    console.log("getName: ", this.name);
+    return this;
+}
+
+let item ={
+    name: 'Intel Core i7',
+    type: 'Processor',
+    price: '200$'
+};
+
+let item2 ={
+    name: 'Intel Core i3',
+    type: 'Processor',
+    price: '100$'
+};
+// item.getPrice = parseCoast;
+item.getName = getName;
+
+// item2.getPrice = parseCoast;
+item2.getName = getName;
+
+// console.log("getPrice method", item.getPrice());
+// console.log("getPrice method", item2.getPrice());
+// console.log("getPrice name:", item2.getName());
+
+
+// function foo() {
+//     console.log("this: ", this);
+// }
+// foo();// окружение Window
+
+parseCoast.call(item);
+
+function setPrice(price, currency) {
+    this.price = price + currency;
+    return this;
+}
+
+
+setPrice.call(item, '500$', 'zzz');
+console.log(item);
+
+// call передает контекст + массив аргументов
+setPrice.apply(item2, [300, '$']);
+console.log(item2);
+
+
+function fooo() {
+    let arr  = [].slice.call(arguments);
+    console.log(arr);
+
+}
+fooo(10, 20, 'ololo');
+
+let max = Math.max.apply(null, [1, 55, 2, 66]);
+console.log(max);
+
+
+let item3 ={
+    name: 'Intel Core i5',
+    type: 'Processor',
+    price: '800$'
+};
+
+item3.getName = getName;
+let getCall = item3.getName.bind(item3);
+
+
+
+
+
+
+
+
+
+
+
 
 let player = (function () {
     let audio;
