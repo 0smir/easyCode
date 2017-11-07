@@ -188,7 +188,7 @@ let element2 = {
     getHeight: function () {return this.height;}
 };
 let getElemHeight = element2.getHeight;
-console.log(getElemHeight.call(element2));
+console.log("element2 full height", getElemHeight.call(element2));
 
 
 
