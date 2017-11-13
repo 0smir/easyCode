@@ -190,6 +190,53 @@ let element2 = {
 let getElemHeight = element2.getHeight;
 console.log("element2 full height", getElemHeight.call(element2));
 
+//Лексическое окружение
+//1
+getBigName(userName);
+
+function getBigName(name) {
+    name = name + '';
+    return name.toUpperCase();
+}
+
+var userName = 'Ivan';
+// undefind -  по причине того что на момент вызова функции (function-declaration - готова к выполнению сразу же)
+// переменная userName = undefind  на момент выполнения (находиться в том же лексическом окружении)
+
+
+//2
+function test() {
+    var name = 'Vasiliy';
+    return getUserBigName(usersNameIvan);
+    
+}
+
+function getUserBigName(name) {
+    name = name + '';
+    return name.toUpperCase();
+}
+
+var usersNameIvan = 'Ivan';
+console.log("LE #2: ", test());//IVAN  в ф-и test вызываеться ф-я getUserBigName => не находит переменную usersName в
+// лексическом окружении ф-и test  поэтому обращаеться к лексическому окружению на порядок выше (это глобальное ЛО),
+//  где есть переменная usersName = 'Ivan'; (globalLE.userName = 'Ivan');
+
+
+
+//3
+var food = 'cucumber';
+
+(function () {
+    var food = 'milk';
+    getFood(food);//'cucumber' -  лексическое окружение которое "запомнила" ф-я глобальное, а в нем food = 'cucumber'
+
+}());
+
+function getFood() {
+    console.log(food);
+}
+
+
 
 
 
