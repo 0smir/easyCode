@@ -230,8 +230,8 @@ var food = 'cucumber';
     console.log("come to the modul");
     var food = 'milk';
     // var modulFood = getFood(food);
-    console.log("modulFood", getFood(food));
-    return modulFood;
+    // console.log("modulFood", getFood(food));
+    // return modulFood;
 }());
 
 function getFood() {
@@ -260,10 +260,60 @@ console.log("getDollar:", someDollar); // 0 , т.к. замыкание прои
 // не находит в своих пределах переменную dollar поднимаеться выше по областям
 // видимсти (в модуле находит переменную со значением 0) и возвращает её;
 
+//2 что будет выведено в консоль
+var gree = 'Hello';
+(function () {
+   var text = 'World';
+   console.log("modul gree + text:", gree + text);// HelloWorld - при выводе console.log воспользовалось
+    // переменной из глобальной области видимости, которая доступна для модуля
+}());
+
+// console.log("global gree + text:", gree + text);// - выведет отшибку т.к. для  console.log - в глобальной области видимости
+// не доступна переменная text из области видимости модуля(подчиненная область)
 
 
+//3 Создать ф-ю которая бы могла вывести:
+let minus = (a) =>{
+    var digArg = a || 0,
+    minusFunc = function (b) {
+        var b = b || 0,
+            digMinus;
+        if(digArg != 0){
+            digMinus = digArg - b;
+        }else{
+            digMinus =  b;
+        }
+        return digMinus;
+    };
+  return minusFunc;
+}
 
+console.log("minus", minus(10)(6));
+console.log("minus",minus(5)(6));
+console.log("minus",minus(0)(5));
+console.log("minus",minus(10)());
+console.log("minus",minus()());
 
+//4 Реализовать ф-ю, которая умножает и умеет запоминать, возвращаемый результат между вызовами:
+function multiplayMaker() {
+    let multyDig;
+
+    return (a) => {
+        if(!multyDig){
+            multyDig = a * a;
+        } else{
+            multyDig = multyDig * a;
+        }
+
+        return multyDig;
+    };
+}
+
+let multiplay = multiplayMaker(2);
+console.log("multiplay 3: ", multiplay(3));
+console.log("multiplay 1: ", multiplay(1));
+console.log("multiplay 4: ", multiplay(4));
+console.log("multiplay 5: ",multiplay(5));
 
 
 
