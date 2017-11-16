@@ -373,7 +373,45 @@ console.log("Module  readStr:  ", stringWork.readStr());
 console.log("Module  lenght:  ", stringWork.lenghtStr());
 console.log("Module  revert string:  ", stringWork.revertStr());
 
+//6 Калькулятор
 
+let calculator  = (function () {
+    
+    let result = 0;
+    console.log("this", this);
+    function calcInit(number) {
+        result = number;
+        return result;
+    }
+
+    function addDigit(number) {
+        console.log("this", this);
+        result = this + number;
+        return result;
+    }
+    function minusDigit() {
+
+    }
+    function multipDigit() {
+
+    }
+    
+    function equally() {
+        
+    }
+
+    return {
+        calculate: calcInit,
+        add: addDigit,
+        subtraction: minusDigit,
+        addition: multipDigit,
+        showResult: equally
+    }
+    
+})();
+
+console.log("start number:", calculator.calculate(10));
+console.log("add number: ", calculator.calculate(10).add(2));
 
 
 
