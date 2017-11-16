@@ -316,6 +316,66 @@ console.log("multiplay 4: ", multiplay(4));
 console.log("multiplay 5: ",multiplay(5));
 
 
+// Модули
+//Реализовать модуль которвй работвет со строкой и имеет методы:
+// 1) установить строку; 2) получить строку;
+// 3)получить длинну строки; 4) получить перевернутую строку;
+let customString = "Wiii, my string!";
+let customStringOneMore = "Wiii, my string! One more";
+let bigNumber = 546546545;
+
+let stringWork = (function () {
+    let string;
+    function stringInit(src) {
+        if((typeof src) === numbers){
+            src = src.toString();
+        }
+        if(src === ''){
+            string = '';
+        }
+        string = new String(src);
+        // return string;
+    };
+
+    function getString() {
+        return string.toString();
+    };
+    function getStringLenght() {
+        let strLenght = string.length;
+        return strLenght;
+    };
+    function getStringRevert() {
+        let revertStr = string.split('').reverse().join("");
+        return revertStr;
+    };
+    return{
+        init: stringInit,
+        readStr: getString,
+        lenghtStr: getStringLenght,
+        revertStr: getStringRevert
+    }
+
+})();
+
+stringWork.init(customString);
+console.log("Module  readStr:  ", stringWork.readStr());
+console.log("Module  lenght:  ", stringWork.lenghtStr());
+console.log("Module  revert string:  ", stringWork.revertStr());
+
+
+stringWork.init(customStringOneMore);
+console.log("Module  readStr:  ", stringWork.readStr());
+console.log("Module  lenght:  ", stringWork.lenghtStr());
+console.log("Module  revert string:  ", stringWork.revertStr());
+
+stringWork.init(bigNumber);
+console.log("Module  readStr:  ", stringWork.readStr());
+console.log("Module  lenght:  ", stringWork.lenghtStr());
+console.log("Module  revert string:  ", stringWork.revertStr());
+
+
+
+
 
 
 
