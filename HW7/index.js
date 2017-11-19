@@ -379,40 +379,45 @@ console.log("Module  revert string:  ", stringWork.revertStr());
 let calculator  = (function () {
     
     let result = 0;
-    console.log("this", this);
+
+
     function calcInit(number) {
-        result = number;
-        return result;
+        this.result = number;
+        return this;
     }
+
 
     function addDigit(number) {
-        console.log("this", this);
-        result = this + number;
-        return result;
+        this.result += number;
+        return this;
     }
-    function minusDigit() {
 
+    function minusDigit(number) {
+        this.result -= number;
+        return this;
     }
-    function multipDigit() {
-
+    function multipDigit(number) {
+        this.result *= number;
+        return this;
     }
     
     function equally() {
-        
+        return this.result;
     }
 
     return {
         calculate: calcInit,
         add: addDigit,
         subtraction: minusDigit,
-        addition: multipDigit,
+        multiply: multipDigit,
         showResult: equally
     }
     
 })();
 
-console.log("start number:", calculator.calculate(10));
-console.log("add number: ", calculator.calculate(10).add(2));
+// console.log("start number:", calculator.calculate(10));
+// console.log("add number: ", calculator.calculate(10).add(2).showResult());
+console.log("chain of calculating: ", calculator.calculate(10).add(2).subtraction(5).multiply(2).showResult());
 
 
 
