@@ -227,19 +227,192 @@ console.log("LE #2: ", test());//IVAN  в ф-и test вызываеться ф-�
 var food = 'cucumber';
 
 (function () {
+    console.log("come to the modul");
     var food = 'milk';
-    getFood(food);//'cucumber' -  лексическое окружение которое "запомнила" ф-я глобальное, а в нем food = 'cucumber'
-
+    // var modulFood = getFood(food);
+    // console.log("modulFood", getFood(food));
+    // return modulFood;
 }());
 
 function getFood() {
-    console.log(food);
+    console.log("not modul", food);//'cucumber' -  лексическое окружение которое "запомнила" ф-я глобальное,
+    // а в нем food = 'cucumber'
 }
 
-//
+//Замыкания
+
+//1 какое значение вернен ф-я getDollar7 Почему?
+var dollar, getDollar;
+
+(function () {
+    var dollar = 0;
+    getDollar = function () {
+        return dollar;
+    };
+}());
+
+dollar = 30;
+
+var someDollar = getDollar();
+
+console.log("getDollar:", someDollar); // 0 , т.к. замыкание происходить на переменной dollar из модуля
+// ф-я getDollar вызываеться в глобальной области видимости, выполняеться в модуле, при выполнении getDollar
+// не находит в своих пределах переменную dollar поднимаеться выше по областям
+// видимсти (в модуле находит переменную со значением 0) и возвращает её;
+
+//2 что будет выведено в консоль
+var gree = 'Hello';
+(function () {
+   var text = 'World';
+   console.log("modul gree + text:", gree + text);// HelloWorld - при выводе console.log воспользовалось
+    // переменной из глобальной области видимости, которая доступна для модуля
+}());
+
+// console.log("global gree + text:", gree + text);// - выведет отшибку т.к. для  console.log - в глобальной области видимости
+// не доступна переменная text из области видимости модуля(подчиненная область)
 
 
+//3 Создать ф-ю которая бы могла вывести:
+let minus = (a) =>{
+    var digArg = a || 0,
+    minusFunc = function (b) {
+        var b = b || 0,
+            digMinus;
+        if(digArg != 0){
+            digMinus = digArg - b;
+        }else{
+            digMinus =  b;
+        }
+        return digMinus;
+    };
+  return minusFunc;
+}
 
+
+console.log("minus", minus(10)(6));
+console.log("minus",minus(5)(6));
+console.log("minus",minus(0)(5));
+console.log("minus",minus(10)());
+console.log("minus",minus()());
+
+//4 Реализовать ф-ю, которая умножает и умеет запоминать, возвращаемый результат между вызовами:
+function multiplayMaker() {
+    let multyDig;
+
+    return (a) => {
+        if(!multyDig){
+            multyDig = a * a;
+        } else{
+            multyDig = multyDig * a;
+        }
+
+        return multyDig;
+    };
+}
+
+let multiplay = multiplayMaker(2);
+console.log("multiplay 3: ", multiplay(3));
+console.log("multiplay 1: ", multiplay(1));
+console.log("multiplay 4: ", multiplay(4));
+console.log("multiplay 5: ",multiplay(5));
+
+
+// Модули
+//Реализовать модуль которвй работвет со строкой и имеет методы:
+// 1) установить строку; 2) получить строку;
+// 3)получить длинну строки; 4) получить перевернутую строку;
+let customString = "Wiii, my string!";
+let customStringOneMore = "Wiii, my string! One more";
+let bigNumber = 546546545;
+
+let stringWork = (function () {
+    let string;
+    function stringInit(src) {
+        if((typeof src) === numbers){
+            src = src.toString();
+        }
+        if(src === ''){
+            string = '';
+        }
+        string = new String(src);
+        // return string;
+    };
+
+    function getString() {
+        return string.toString();
+    };
+    function getStringLenght() {
+        let strLenght = string.length;
+        return strLenght;
+    };
+    function getStringRevert() {
+        let revertStr = string.split('').reverse().join("");
+        return revertStr;
+    };
+    return{
+        init: stringInit,
+        readStr: getString,
+        lenghtStr: getStringLenght,
+        revertStr: getStringRevert
+    }
+
+})();
+
+stringWork.init(customString);
+console.log("Module  readStr:  ", stringWork.readStr());
+console.log("Module  lenght:  ", stringWork.lenghtStr());
+console.log("Module  revert string:  ", stringWork.revertStr());
+
+
+stringWork.init(customStringOneMore);
+console.log("Module  readStr:  ", stringWork.readStr());
+console.log("Module  lenght:  ", stringWork.lenghtStr());
+console.log("Module  revert string:  ", stringWork.revertStr());
+
+stringWork.init(bigNumber);
+console.log("Module  readStr:  ", stringWork.readStr());
+console.log("Module  lenght:  ", stringWork.lenghtStr());
+console.log("Module  revert string:  ", stringWork.revertStr());
+
+//6 Калькулятор
+
+let calculator  = (function () {
+    
+    let result = 0;
+    console.log("this", this);
+    function calcInit(number) {
+        result = number;
+        return result;
+    }
+
+    function addDigit(number) {
+        console.log("this", this);
+        result = this + number;
+        return result;
+    }
+    function minusDigit() {
+
+    }
+    function multipDigit() {
+
+    }
+    
+    function equally() {
+        
+    }
+
+    return {
+        calculate: calcInit,
+        add: addDigit,
+        subtraction: minusDigit,
+        addition: multipDigit,
+        showResult: equally
+    }
+    
+})();
+
+console.log("start number:", calculator.calculate(10));
+console.log("add number: ", calculator.calculate(10).add(2));
 
 
 
