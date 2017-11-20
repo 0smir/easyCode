@@ -382,27 +382,27 @@ let calculator  = (function () {
 
 
     function calcInit(number) {
-        this.result = number;
+        result = number;
         return this;
     }
 
 
     function addDigit(number) {
-        this.result += number;
+        result += number;
         return this;
     }
 
     function minusDigit(number) {
-        this.result -= number;
+        result -= number;
         return this;
     }
     function multipDigit(number) {
-        this.result *= number;
+        result *= number;
         return this;
     }
     
     function equally() {
-        return this.result;
+        return result;
     }
 
     return {
