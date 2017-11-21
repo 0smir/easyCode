@@ -53,7 +53,7 @@ function Enigma (stringVal){
             } else {
                console.log("строка не была удаленаюВы отменили действие");
             }
-            return this;
+            return "none";
         }
 
         return question();
