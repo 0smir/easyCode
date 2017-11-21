@@ -105,10 +105,13 @@ class strClass{
 strClass.prototype.toString = function (){
     return this.string;
 }
-
+// strClass.prototype.Number = function (str) {
+//     return this.string.length;
+// }
 
 let string1 = new strClass ('firstString');
 
 console.log("getString", string1.getString);
 console.log("toString()", string1.toString());
 console.log("getStringLength", string1.toString());
+// console.log("parseInt", Number(string1));
