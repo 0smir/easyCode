@@ -52,7 +52,7 @@ console.log(user.getName());
 //4 Создать объект, с поляе: высота и метод - увнеличить высоту на 1;
 
 function increase() {
-    return this.height = this.height + 1;
+    return this.height += 1;
 }
 
 let build = {
@@ -418,18 +418,3 @@ let calculator  = (function () {
 // console.log("start number:", calculator.calculate(10));
 // console.log("add number: ", calculator.calculate(10).add(2).showResult());
 console.log("chain of calculating: ", calculator.calculate(10).add(2).subtraction(5).multiply(2).showResult());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
