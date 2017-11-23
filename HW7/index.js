@@ -377,16 +377,17 @@ console.log("Module  revert string:  ", stringWork.revertStr());
 
 let calculator  = (function () {
     
-    let result = 0;
-    console.log("this", this);
+    let result;
+
     function calcInit(number) {
-        result = number;
+        result = new Function(number);
         return result;
     }
 
     function addDigit(number) {
-        console.log("this", this);
-        result = this + number;
+        result  = function (number) {
+            
+        };
         return result;
     }
     function minusDigit() {
@@ -395,19 +396,15 @@ let calculator  = (function () {
     function multipDigit() {
 
     }
-    
-    function equally() {
-        
-    }
+
 
     return {
         calculate: calcInit,
         add: addDigit,
         subtraction: minusDigit,
-        addition: multipDigit,
-        showResult: equally
+        addition: multipDigit
     }
-    
+
 })();
 
 console.log("start number:", calculator.calculate(10));
