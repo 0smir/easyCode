@@ -52,7 +52,7 @@ console.log(user.getName());
 //4 Создать объект, с поляе: высота и метод - увнеличить высоту на 1;
 
 function increase() {
-    return this.height = this.height + 1;
+    return this.height += 1;
 }
 
 let build = {
@@ -288,6 +288,7 @@ let minus = (a) =>{
   return minusFunc;
 }
 
+
 console.log("minus", minus(10)(6));
 console.log("minus",minus(5)(6));
 console.log("minus",minus(0)(5));
@@ -376,51 +377,42 @@ console.log("Module  revert string:  ", stringWork.revertStr());
 //6 Калькулятор
 
 let calculator  = (function () {
-    
-    let result;
+    let result = 0;
 
     function calcInit(number) {
-        result = new Function(number);
-        return result;
+        result = number;
+        return this;
     }
+
 
     function addDigit(number) {
-        result  = function (number) {
-            
-        };
+        result += number;
+        return this;
+    }
+
+    function minusDigit(number) {
+        result -= number;
+        return this;
+    }
+    function multipDigit(number) {
+        result *= number;
+        return this;
+    }
+
+    function equally() {
         return result;
     }
-    function minusDigit() {
-
-    }
-    function multipDigit() {
-
-    }
-
 
     return {
         calculate: calcInit,
         add: addDigit,
         subtraction: minusDigit,
-        addition: multipDigit
+        multiply: multipDigit,
+        showResult: equally
     }
 
 })();
 
-console.log("start number:", calculator.calculate(10));
-console.log("add number: ", calculator.calculate(10).add(2));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// console.log("start number:", calculator.calculate(10));
+// console.log("add number: ", calculator.calculate(10).add(2).showResult());
+console.log("chain of calculating: ", calculator.calculate(10).add(2).subtraction(5).multiply(2).showResult());
