@@ -41,3 +41,52 @@ for(let i = 0; i < firstDivCildrens.length; i++ ){
         console.log(firstDivCildrens[i]);
     }
 }
+
+
+//DOM
+console.log("============= DOM Part 2 ==================");
+console.log("=== 1. Ф-я для проверки является ли первый элемент родителем второго ======");
+let linkList = document.links;
+let listUl = document.getElementsByTagName('ul')[0];
+let listItems = document.querySelectorAll('li');
+function isParent(parent, child) {
+    // console.log(parent);
+    // console.log(child);
+    // console.log(child.parentNode);
+    let parentNode = child.parentNode;
+    let matches;
+    while(parentNode !== parent){
+        if(parentNode === parent) {
+            matches = true;
+            return;
+        }
+        if(parentNode === null){
+            matches = false;
+            return matches;
+        }
+        parentNode = parentNode.parentNode;
+    }
+    console.log(matches);
+    return matches;
+}
+console.log(isParent(listUl, linkList[3]));
+console.log(isParent(listUl, linkList[0]);
+
+console.log("=== 2. список ссылок которые не находятся внутри ul ======");
+let linkNotInList = [];
+for(let i = 0; i < linkList.length; i++){
+    if(!linkList[i].closest('ul')){
+        linkNotInList.push(linkList[i]);
+        console.log(linkList[i]);
+    }
+}
+console.log(linkNotInList);
+
+console.log("====== 3. элементы котор. находятся перед и после ul  ======");
+
+console.log("prev", listUl.previousElementSibling);
+console.log("next", listUl.nextElementSibling);
+
+console.log("====== 4. посчитать кол-во элементов li в списке =======");
+
+console.log('li count:', listItems.length);
