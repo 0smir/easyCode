@@ -50,12 +50,11 @@ let linkList = document.links;
 let listUl = document.getElementsByTagName('ul')[0];
 let listItems = document.querySelectorAll('li');
 function isParent(parent, child) {
-    // console.log(parent);
-    // console.log(child);
-    // console.log(child.parentNode);
+
     let parentNode = child.parentNode;
-    let matches;
+    let matches = true;
     while(parentNode !== parent){
+
         if(parentNode === parent) {
             matches = true;
             return;
@@ -66,11 +65,12 @@ function isParent(parent, child) {
         }
         parentNode = parentNode.parentNode;
     }
-    console.log(matches);
+
     return matches;
 }
+
 console.log(isParent(listUl, linkList[3]));
-console.log(isParent(listUl, linkList[0]);
+console.log(isParent(listUl, linkList[0]));
 
 console.log("=== 2. список ссылок которые не находятся внутри ul ======");
 let linkNotInList = [];
