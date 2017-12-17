@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('====== 2) создать ф-ю которая принимает как аргумент узел-DOM и возвращает информацию в виде объекта с данными ' +
         'о типе узла, об имени узла о количестве дочерних элементов======');
-
+let link = document.querySelector('a');
 
     function getElementInfo(element) {
         function getElementNodeType() {
@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getElementInfo(paragraph);
+    getElementInfo(link);
 
 
 
@@ -65,5 +66,31 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     console.log(paragraph);
 
+
+    console.log('=================Часть 2===================')
+    console.log('===== Найти в коде список ul и добпвить класс "list" ========');
+    let list = document.querySelector('ul');
+        list.classList.add('list');
+    console.log(list);
+    console.log('=======Найти в коде ссылку, находящуюся сразу после списока ul и установить класс "item"=========');
+    let linkAfterList = document.querySelector('ul ~ a');
+        linkAfterList.setAttribute('class', 'item');
+    console.log(linkAfterList);
+    console.log('=============На li через один установить класс "item"=============');
+        let listItem = list.querySelectorAll('li');
+        for(let i = 0; i < listItem.length; i++){
+            if(i % 2 === 0){
+                listItem[i].classList.add('item');
+            }
+        }
+        console.log(listItem);
+    console.log('=============На все ссылкти в примере установить класс "custom-link"=============');
+    let linkList = document.querySelectorAll('a');
+
+        for(let i = 0; i < linkList.length; i++){
+            linkList[i].classList.add('custom-link');
+        }
+
+        console.log(linkList);
 
 });
